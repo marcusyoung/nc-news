@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react"
+import { Link } from 'react-router-dom';
 import { getAllArticles } from "../../utils/api"
 
 function AllArticles() {
@@ -9,9 +10,8 @@ function AllArticles() {
     useEffect(() => {
         setLoading(true)
         getAllArticles()
-            .then((response) => {
+            .then((articles) => {
                 setLoading(false)
-                const articles = response.data.articles
                 setArticlesList(articles)
             })
     }, [])
@@ -27,9 +27,11 @@ function AllArticles() {
                 {
                     articlesList.map((article) => {
                         return (
-                            <article key={article.article_id}>
+                            <article className="article-card" key={article.article_id}>
+                                <Link to={`/articles/${article.article_id}`}>
                                 <img src={article.article_img_url}></img>
                                 <h2>{article.title}</h2>
+                                </Link>
                             </article>
                         )
                     })
