@@ -17,3 +17,10 @@ export function getArticle(article_id) {
         return response.data.article
     });
 }
+
+export function getComments(article_id) {
+    return newsAPI.get(`/articles/${article_id}/comments`, )
+    .then((response) => {
+        return response.data.comments
+    });
+}

@@ -1,8 +1,9 @@
 import { useParams } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { getArticle } from '../../utils/api'
-import format from "date-fns/format"
 import vote from '../../assets/wish-list.png'
+import Comments from './Comments'
+import { formatDate} from "../../utils/utils.js"
 
 function Article() {
 
@@ -16,7 +17,6 @@ function Article() {
             .then((article) => {
                 setLoading(false)
                 setArticle(article)
-                console.log(article)
             })
     }, [article_id])
 
@@ -28,9 +28,10 @@ function Article() {
         <>
             <article className='full-article'>
                 <h2>{article.title}<span className='topic-badge'>{article.topic.toUpperCase()}</span></h2>
+                <img src={article.article_img_url}></img>
                 <ul className="article-details">
                     <li>{article.author}</li>
-                    <li>{format(article.created_at, "E dd MMMM yyyy hh:mm bb")}</li>
+                    <li>{formatDate(article.created_at)}</li>
                 </ul>
                 <p>{article.body}</p>
                 <div id="votes">
@@ -38,7 +39,10 @@ function Article() {
                     {article.votes}
                 </div>
             </article>
-        </>
+            <section>
+                <Comments article_id={article_id}/>
+            </section>
+            </>
     )
 }
 

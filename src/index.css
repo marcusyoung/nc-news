@@ -91,8 +91,9 @@ footer ul {
 
 .article-details {
   display: flex;
+  padding: 0;
   list-style-type: none;
-  justify-content: right;
+  justify-content: left;
   font-size: smaller;
 }
 
@@ -107,6 +108,29 @@ footer ul {
 #votes {
   text-align: left;
   font-size: smaller;
+}
+
+.comment-details {
+  display: flex;
+  list-style-type: none;
+  justify-content: right;
+  font-size: smaller;
+}
+
+.comment-details li {
+  margin-right: 10px;
+}
+
+.article-comments p {
+  text-align: justify;
+}
+
+.article-comment {
+  padding: 15px;
+  margin: 15px;
+  border: lightgray;
+  border-style: solid;
+  border-width: 1px;
 }
 
 a {
