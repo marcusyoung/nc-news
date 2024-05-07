@@ -4,14 +4,21 @@ import { getAllArticles } from "../../utils/api"
 function AllArticles() {
 
     const [articlesList, setArticlesList] = useState([])
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
+        setLoading(true)
         getAllArticles()
             .then((response) => {
+                setLoading(false)
                 const articles = response.data.articles
                 setArticlesList(articles)
             })
     }, [])
+
+    if (loading) {
+        return <p>Please wait...</p>
+    }
 
     return (
         <>

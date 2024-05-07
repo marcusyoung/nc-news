@@ -13,8 +13,12 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+body {
+  width: 100%;
+}
+
 nav {
-  background-color: darkblue
+  background-color: darkblue;
 }
 
 nav ul {
@@ -25,8 +29,13 @@ nav ul {
   color: #f9f9f9;
 }
 
+nav li {
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
 footer {
-  background-color: darkgrey
+  background-color: darkgrey;
 }
 
 footer ul {
