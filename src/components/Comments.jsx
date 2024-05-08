@@ -22,7 +22,6 @@ function Comments({ article_id }) {
     }
 
     return (
-        <>
             <section className="article-comments">
                 <h2>Comments</h2>
                 {
@@ -43,7 +42,6 @@ function Comments({ article_id }) {
                     })
                 }
             </section>
-        </>
     )
 }
 
