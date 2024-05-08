@@ -4,6 +4,7 @@ import { getArticle } from '../../utils/api'
 import vote from '../../assets/wish-list.png'
 import Comments from './Comments'
 import { formatDate } from "../../utils/utils.js"
+import Votes from './Votes.jsx'
 
 function Article() {
 
@@ -34,10 +35,7 @@ function Article() {
                     <li>{formatDate(article.created_at)}</li>
                 </ul>
                 <p>{article.body}</p>
-                <div id="votes">
-                    <img src={vote} alt="Vote for article" />
-                    {article.votes}
-                </div>
+                <Votes itemVotes={article.votes} article_id={article_id}/>
             </article>
             <section>
                 <Comments article_id={article_id} />

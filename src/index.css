@@ -105,9 +105,23 @@ footer ul {
   text-align: justify;
 }
 
-#votes {
+.votes {
   text-align: left;
   font-size: smaller;
+  font-weight: 600;
+}
+
+.votes img {
+  margin-right: 2px;
+}
+
+.votes img:hover {
+  cursor:pointer
+}
+
+.error {
+  margin-left: 10px;
+  color: red;
 }
 
 .comment-details {
