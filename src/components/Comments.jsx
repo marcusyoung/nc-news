@@ -10,7 +10,6 @@ function Comments({ article_id }) {
     const [loading, setLoading] = useState(true)
     const [triggerReload, setTriggerReload] = useState(0)
 
-
     useEffect(() => {
         setLoading(true)
         getComments(article_id)

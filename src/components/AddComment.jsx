@@ -2,36 +2,43 @@ import { useContext, useState } from 'react'
 import { LoggedOnUserContext } from '../contexts/LoggedOnUser'
 import { addArticleComment } from '../../utils/api'
 
-function AddComment({ article_id, setTriggerReload}) {
+function AddComment({ article_id, setTriggerReload }) {
 
     const { loggedOnUser } = useContext(LoggedOnUserContext)
     const [commentText, setCommentText] = useState("")
-    const [errorMessage, setErrorMessage] = useState('')
+    const [statusMessage, setStatusMessage] = useState('')
 
     function handleSubmit(event) {
         event.preventDefault()
         if (loggedOnUser) {
+            setStatusMessage("Posting comment...")
+
             addArticleComment(article_id, { username: loggedOnUser, body: commentText })
                 .then(() => {
-                   setTriggerReload((current) => current + 1) 
+                    setTriggerReload((current) => current + 1)
+                    setStatusMessage('')
                 })
                 .catch(error => {
-                    setErrorMessage("Oops... there was a problem adding your comment")
+                    setStatusMessage("Oops... there was a problem adding your comment")
                 })
         } else {
-            setErrorMessage("Sorry... you must be logged on to comment")
+            setStatusMessage("Sorry... you must be logged on to comment")
         }
+    }
+
+    function handleCancel() {
+        setCommentText("")
     }
 
     return (
         <section>
             <form onSubmit={handleSubmit} id="add-comment-form">
-                <label id="add-comment-label" htmlFor='add-comment'>Add a comment</label>
-                <textarea onChange={(e) => setCommentText(e.target.value)} value={commentText} id="add-comment-textarea" rows="3"></textarea>
-                <button type="reset">Cancel</button>
-                <button type="submit">Create</button>
+                <label id="add-comment-label" htmlFor='add-comment-text'>Add a comment</label>
+                <textarea onChange={(e) => setCommentText(e.target.value)} value={commentText} id="add-comment-text" rows="5"></textarea>
+                <button disabled={commentText.length < 1} onClick={handleCancel}>Cancel</button>
+                <button disabled={(commentText.length < 1 || statusMessage === "Posting comment...")} type="submit" id="add-comment-submit">Add comment</button>
             </form>
-            {errorMessage && <p className='error'> {errorMessage} </p>}
+            {statusMessage && <p className='status'> {statusMessage} </p>}
         </section>
     )
 }
