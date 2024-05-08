@@ -5,13 +5,12 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 import AllArticles from './components/AllArticles'
 import Article from './components/Article'
+import { LoggedOnUserProvider } from './contexts/LoggedOnUser';
 
 function App() {
 
-  const [loggedOnUser, SetLoggedOnUser] = useState("tickle122")
-
   return (
-    <>
+    <LoggedOnUserProvider>
       <Header />
       <Routes>
       <Route path="" element={<AllArticles />} />
@@ -19,7 +18,7 @@ function App() {
       <Route path="/articles/:article_id" element={<Article />} />
       </Routes>
       <Footer />
-    </>
+    </LoggedOnUserProvider>
   )
 }
 

@@ -1,7 +1,7 @@
 import { getComments } from '../../utils/api'
 import { useState, useEffect } from "react"
-import vote from '../../assets/wish-list.png'
 import { formatDate} from "../../utils/utils.js"
+import Votes from './Votes.jsx'
 
 function Comments({ article_id }) {
 
@@ -33,15 +33,13 @@ function Comments({ article_id }) {
                                     <li>{formatDate(comment.created_at)}</li>
                                 </ul>
                                 <p>{comment.body}</p>
-                                <div id="votes">
-                                    <img src={vote} alt="Vote for comment" />
-                                    {comment.votes}
-                                </div>
+                                <Votes itemVotes={comment.votes} comment_id={comment.comment_id}/>
                             </div>
                         )
                     })
                 }
             </section>
+
     )
 }
 

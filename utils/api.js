@@ -6,21 +6,28 @@ const newsAPI = axios.create({
 
 export function getAllArticles() {
     return newsAPI.get("/articles")
-    .then((response) => {
-        return response.data.articles
-    } );
+        .then((response) => {
+            return response.data.articles
+        });
 }
 
 export function getArticle(article_id) {
-    return newsAPI.get(`/articles/${article_id}`, )
-    .then((response) => {
-        return response.data.article
-    });
+    return newsAPI.get(`/articles/${article_id}`,)
+        .then((response) => {
+            return response.data.article
+        });
 }
 
 export function getComments(article_id) {
-    return newsAPI.get(`/articles/${article_id}/comments`, )
-    .then((response) => {
-        return response.data.comments
-    });
+    return newsAPI.get(`/articles/${article_id}/comments`,)
+        .then((response) => {
+            return response.data.comments
+        });
+}
+
+export function voteForArticle(article_id, vote) {
+    return newsAPI.patch(`/articles/${article_id}`, vote)
+        .then((response) => {
+            return response.data.article
+        })
 }
