@@ -147,6 +147,19 @@ footer ul {
   border-width: 1px;
 }
 
+#add-comment-label {
+  display: block;
+  text-align: left;
+}
+
+#add-comment-form button {
+  text-align: right;
+}
+
+#add-comment-textarea {
+  width: 100%;
+}
+
 a {
   font-weight: 500;
   color: #646cff;
