@@ -133,6 +133,7 @@ footer ul {
 
 .comment-details li {
   margin-right: 10px;
+  margin-left: 0px;
 }
 
 .article-comments p {
@@ -173,6 +174,22 @@ background-color: #d5f9e8;
   padding: 5px;
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   font-size: 16px;
+}
+
+.button-comment-delete {
+  background-color: red;
+  color: white;
+  padding: 1px 2px;
+  border-radius: 0px;
+}
+
+.button-comment-delete:hover {
+  background-color: rgb(245, 66, 66);
+  border-color: red;
+}
+
+.button-comment-delete:disabled {
+  background-color: lightgray;
 }
 
 a {
