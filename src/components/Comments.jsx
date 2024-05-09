@@ -22,6 +22,9 @@ function Comments({ article_id }) {
             })
     }, [article_id])
 
+    if (loading) {
+        return <p>Please wait...</p>
+    }
 
     function handleDeleteComment(comment_id) {
         setCommentDeleteStatus({ comment_id: Number(comment_id), message: "Deleting comment..." })
@@ -34,10 +37,6 @@ function Comments({ article_id }) {
             .catch(error => {
                 setCommentDeleteStatus({ comment_id: Number(comment_id), message: "Oops... there was a problem deleting the comment" })
             })
-    }
-
-    if (loading) {
-        return <p>Please wait...</p>
     }
 
     return (

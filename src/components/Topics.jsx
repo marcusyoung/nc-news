@@ -5,7 +5,6 @@ import { getTopicsList } from "../../utils/api"
 function Topics() {
 
     const [topicsList, setTopicsList] = useState([])
-
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
