@@ -23,10 +23,12 @@ function AllArticles() {
         setOrderBy(value)
     }
 
-
-
     useEffect(() => {
-        setSearchParams({ sort_by: sortBy, order_by: orderBy })
+        if (topic) {
+            setSearchParams({ sort_by: sortBy, order_by: orderBy, topic: topic })
+        } else {
+            setSearchParams({ sort_by: sortBy, order_by: orderBy })
+        }
         setLoading(true)
         getAllArticles(topic, sortBy, orderBy)
             .then((articles) => {
@@ -41,7 +43,7 @@ function AllArticles() {
 
     return (
         <>
-            {topic ? <h1>Articles - {topic}</h1> : <h1>All Articles</h1>}
+            {topic !== null ? <h1>Articles - {topic}</h1> : <h1>All Articles</h1>}
             <form>
                 <label htmlFor="article-column-sort">Sort: </label>
                 <select value={sortBy} id="article-column-sort" onChange={(e) => handleSelectSort(e.target.value)}>

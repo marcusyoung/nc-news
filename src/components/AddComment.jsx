@@ -2,7 +2,7 @@ import { useContext, useState } from 'react'
 import { LoggedOnUserContext } from '../contexts/LoggedOnUser'
 import { addArticleComment } from '../../utils/api'
 
-function AddComment({ article_id, setTriggerReloadComments }) {
+function AddComment({ article_id, comments, setComments }) {
 
     const { loggedOnUser } = useContext(LoggedOnUserContext)
     const [commentText, setCommentText] = useState("")
@@ -14,8 +14,10 @@ function AddComment({ article_id, setTriggerReloadComments }) {
             setStatusMessage("Posting comment...")
 
             addArticleComment(article_id, { username: loggedOnUser, body: commentText })
-                .then(() => {
-                    setTriggerReloadComments((current) => current + 1)
+                .then((comment) => {
+                    const updatedComments = [comment, ...comments]
+                    setComments(updatedComments)
+                    setCommentText("")
                     setStatusMessage('')
                 })
                 .catch(error => {
@@ -28,6 +30,7 @@ function AddComment({ article_id, setTriggerReloadComments }) {
 
     function handleCancel() {
         setCommentText("")
+        setStatusMessage("")
     }
 
     return (

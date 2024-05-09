@@ -11,7 +11,6 @@ function Comments({ article_id }) {
     const { loggedOnUser } = useContext(LoggedOnUserContext)
     const [comments, setComments] = useState([])
     const [loading, setLoading] = useState(true)
-    const [triggerReloadComments, setTriggerReloadComments] = useState(0)
     const [commentDeleteStatus, setCommentDeleteStatus] = useState({ comment_id: null, message: '' })
 
     useEffect(() => {
@@ -21,14 +20,15 @@ function Comments({ article_id }) {
                 setLoading(false)
                 setComments(comments)
             })
-    }, [article_id, triggerReloadComments])
+    }, [article_id])
 
 
     function handleDeleteComment(comment_id) {
         setCommentDeleteStatus({ comment_id: Number(comment_id), message: "Deleting comment..." })
         deleteArticleComment(comment_id)
             .then((response) => {
-                setTriggerReloadComments((current) => current + 1)
+                const updatedComments = [...comments].filter((comment) => comment.comment_id != comment_id)
+                setComments(updatedComments)
                 setCommentDeleteStatus({ comment_id: null, message: "" })
             })
             .catch(error => {
@@ -43,7 +43,7 @@ function Comments({ article_id }) {
     return (
         <section className="article-comments">
             <h2>Comments</h2>
-            <AddComment article_id={article_id} setTriggerReloadComments={setTriggerReloadComments} />
+            <AddComment article_id={article_id} comments={comments} setComments={setComments} />
             {
                 comments.map((comment) => {
                     return (
