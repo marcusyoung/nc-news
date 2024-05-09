@@ -2,7 +2,7 @@ import { useContext, useState } from 'react'
 import { LoggedOnUserContext } from '../contexts/LoggedOnUser'
 import { addArticleComment } from '../../utils/api'
 
-function AddComment({ article_id, setTriggerReload }) {
+function AddComment({ article_id, setTriggerReloadComments }) {
 
     const { loggedOnUser } = useContext(LoggedOnUserContext)
     const [commentText, setCommentText] = useState("")
@@ -15,7 +15,7 @@ function AddComment({ article_id, setTriggerReload }) {
 
             addArticleComment(article_id, { username: loggedOnUser, body: commentText })
                 .then(() => {
-                    setTriggerReload((current) => current + 1)
+                    setTriggerReloadComments((current) => current + 1)
                     setStatusMessage('')
                 })
                 .catch(error => {

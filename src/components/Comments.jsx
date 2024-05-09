@@ -8,7 +8,7 @@ function Comments({ article_id }) {
 
     const [comments, setComments] = useState([])
     const [loading, setLoading] = useState(true)
-    const [triggerReload, setTriggerReload] = useState(0)
+    const [triggerReloadComments, setTriggerReloadComments] = useState(0)
 
     useEffect(() => {
         setLoading(true)
@@ -17,7 +17,7 @@ function Comments({ article_id }) {
                 setLoading(false)
                 setComments(comments)
             })
-    }, [article_id, triggerReload])
+    }, [article_id, triggerReloadComments])
 
     if (loading) {
         return <p>Please wait...</p>
@@ -26,7 +26,7 @@ function Comments({ article_id }) {
     return (
         <section className="article-comments">
             <h2>Comments</h2>
-            <AddComment article_id={article_id} setTriggerReload={setTriggerReload} />
+            <AddComment article_id={article_id} setTriggerReloadComments={setTriggerReloadComments} />
             {
                 comments.map((comment) => {
                     return (
