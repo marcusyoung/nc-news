@@ -12,7 +12,6 @@ function AddComment({ article_id, comments, setComments }) {
         event.preventDefault()
         if (loggedOnUser) {
             setStatusMessage("Posting comment...")
-
             addArticleComment(article_id, { username: loggedOnUser, body: commentText })
                 .then((comment) => {
                     const updatedComments = [comment, ...comments]

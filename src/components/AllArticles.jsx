@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link, useSearchParams, useNavigate } from 'react-router-dom';
 import { getAllArticles } from "../../utils/api"
 import { formatDate } from "../../utils/utils";
 import voteLogo from '../../assets/heart.png'
@@ -12,7 +12,7 @@ function AllArticles() {
     const [searchParams, setSearchParams] = useSearchParams()
     const [sortBy, setSortBy] = useState("created_at")
     const [orderBy, setOrderBy] = useState("desc")
-
+    const navigate = useNavigate();
     const topic = searchParams.get("topic")
 
     function handleSelectSort(value) {
@@ -34,6 +34,9 @@ function AllArticles() {
             .then((articles) => {
                 setLoading(false)
                 setArticlesList(articles)
+            })
+            .catch((error) => {
+                navigate("/error", { state: { message: error.message } })
             })
     }, [topic, sortBy, orderBy])
 
