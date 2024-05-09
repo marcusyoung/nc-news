@@ -10,8 +10,8 @@ function Header() {
         <nav>
             <ul>
                 <Link to="/"><li>Northcoders News</li></Link>
-                <Link to="/"><li>All articles</li></Link>
-                <li>Topics</li>
+                <Link to="/articles"><li>All articles</li></Link>
+                <Link to="/topics"><li>Topics</li></Link>
                 <li>{loggedOnUser}</li>
             </ul>
         </nav>
