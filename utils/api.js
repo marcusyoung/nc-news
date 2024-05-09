@@ -31,3 +31,10 @@ export function voteForArticle(article_id, vote) {
             return response.data.article
         })
 }
+
+export function addArticleComment(article_id, comment) {
+    return newsAPI.post(`/articles/${article_id}/comments`, comment)
+    .then((response) => {
+        return response.data.comment
+    })
+}

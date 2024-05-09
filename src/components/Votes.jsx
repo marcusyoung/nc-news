@@ -8,10 +8,10 @@ function Votes({ itemVotes, article_id, comment_id }) {
 
     const { loggedOnUser } = useContext(LoggedOnUserContext)
     const [votes, setVotes] = useState(itemVotes)
-    const [errorMessage, setErrorMessage] = useState('')
+    const [statusMessage, setStatusMessage] = useState('')
 
     const handleVoteClick = (num) => {
-        setErrorMessage('')
+        setStatusMessage('')
         if (loggedOnUser) {
             if (article_id) {
                 // optimistically update vote count
@@ -20,11 +20,11 @@ function Votes({ itemVotes, article_id, comment_id }) {
                     .catch(error => {
                         // undo vote if vote increment failed on backend
                         setVotes((current) => current - num)
-                        setErrorMessage("Oops... there was a problem voting")
+                        setStatusMessage("Oops... there was a problem voting")
                     })
             }
         } else {
-            setErrorMessage("Sorry... you must be logged on to vote")
+            setStatusMessage("Sorry... you must be logged on to vote")
         }
     }
 
@@ -34,7 +34,7 @@ function Votes({ itemVotes, article_id, comment_id }) {
             {votes >= 0 ? votes : null}
             <img onClick={() => handleVoteClick(-1)} src={vote_minus} alt="Vote" />
             {votes < 0 ? votes : null}
-            {errorMessage && <span className='error'> {errorMessage} </span>}
+            {statusMessage && <span className='error'> {statusMessage} </span>}
         </div>
     )
 }
