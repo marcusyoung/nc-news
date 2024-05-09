@@ -38,3 +38,10 @@ export function addArticleComment(article_id, comment) {
         return response.data.comment
     })
 }
+
+export function deleteArticleComment(comment_id) {
+    return newsAPI.delete(`/comments/${comment_id}`)
+    .then((response) => {
+        return response
+    })
+}
