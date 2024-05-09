@@ -36,7 +36,7 @@ nav li {
   margin-left: 10px;
 }
 
-nav a:visited {
+nav a {
   color: white;
 }
 
@@ -191,6 +191,23 @@ background-color: #d5f9e8;
 .button-comment-delete:disabled {
   background-color: lightgray;
 }
+
+#topics-list dl {
+  text-align: left;
+  margin-left: 10px;
+}
+
+#topics-list dt {
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+#topics-list dd {
+  background:none no-repeat left top;
+  padding-left: 20px;
+  font-size: smaller;
+}
+
 
 a {
   font-weight: 500;
