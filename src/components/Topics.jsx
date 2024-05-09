@@ -28,10 +28,10 @@ function Topics() {
                 {
                     topicsList.map((topic) => {
                         return (
-                            <>
-                                <dt><Link to={`/articles/?topic=${topic.slug}`}>{topic.slug}</Link></dt>
-                                <dd>{topic.description}</dd>
-                            </>
+                            <div key={topic.slug}>
+                                <dt ><Link to={`/articles/?topic=${topic.slug}`}>{topic.slug}</Link></dt>
+                                <dd key={topic.slug}>{topic.description}</dd>
+                            </div>
                         )
                     })
                 }
