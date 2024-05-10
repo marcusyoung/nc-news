@@ -46,13 +46,13 @@ function AllArticles() {
 
     return (
         <>
-            {topic !== null ? <h1>Articles - {topic}</h1> : <h1>All Articles</h1>}
-            <form>
+            {topic !== null ? <h1>Articles - {topic}</h1> : <h1>Articles</h1>}
+            <form id="form-article-list-sort">
                 <label htmlFor="article-column-sort">Sort: </label>
                 <select value={sortBy} id="article-column-sort" onChange={(e) => handleSelectSort(e.target.value)}>
-                    <option value="created_at">date</option>
-                    <option value="votes">votes</option>
-                    <option value="comment_count">comments</option>
+                    <option value="created_at">Date</option>
+                    <option value="votes">Votes</option>
+                    <option value="comment_count">Comments</option>
                 </select>
                 <select value={orderBy} id="article-column-order" onChange={(e) => handleSelectOrder(e.target.value)}>
                     <option value="asc">Up</option>
