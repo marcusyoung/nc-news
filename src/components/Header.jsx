@@ -7,11 +7,11 @@ function Header() {
     const {loggedOnUser} = useContext(LoggedOnUserContext)
 
     return (
-        <nav>
+        <nav aria-label="Main">
             <ul>
-                <Link to="/"><li>Northcoders News</li></Link>
-                <Link to="/articles"><li>All articles</li></Link>
-                <Link to="/topics"><li>Topics</li></Link>
+                <li><Link to="/">Northcoders News</Link></li>
+                <li><Link to="/articles">All articles</Link></li>
+                <li><Link to="/topics">Topics</Link></li>
                 <li>{loggedOnUser}</li>
             </ul>
         </nav>

@@ -54,7 +54,7 @@ function AllArticles() {
                     <option value="votes">Votes</option>
                     <option value="comment_count">Comments</option>
                 </select>
-                <select value={orderBy} id="article-column-order" onChange={(e) => handleSelectOrder(e.target.value)}>
+                <select aria-label="set sort order" value={orderBy} id="article-column-order" onChange={(e) => handleSelectOrder(e.target.value)}>
                     <option value="asc">Up</option>
                     <option value="desc">Down</option>
                 </select>
@@ -66,8 +66,8 @@ function AllArticles() {
                             <article className="article-card" key={article.article_id}>
                                 <ul className="article-list-details" key={article.article_id}>
                                     <li>{formatDate(article.created_at, "condensed")}</li>
-                                    <li><img src={voteLogo}></img>{article.votes}</li>
-                                    <li><img src={commentLogo}></img>{article.comment_count}</li>
+                                    <li><img src={voteLogo} alt="Heart used to indicate number of votes an article has"></img>{article.votes}</li>
+                                    <li><img src={commentLogo} alt="Speech bubble used to indicated number of comments an article has"></img>{article.comment_count}</li>
                                 </ul>
                                 <Link to={`/articles/${article.article_id}`}>
                                     <img src={article.article_img_url}></img>

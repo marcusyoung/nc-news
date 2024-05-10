@@ -33,7 +33,7 @@ function Article() {
     return (
         <>
             <article className='full-article'>
-                <h2>{article.title}<span className='topic-badge'>{article.topic.toUpperCase()}</span></h2>
+                <h1>{article.title}<span className='topic-badge'>{article.topic.toUpperCase()}</span></h1>
                 <img src={article.article_img_url}></img>
                 <ul key={article.artcile_id} className="article-details">
                     <li>By {article.author}</li>

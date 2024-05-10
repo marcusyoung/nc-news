@@ -2,6 +2,7 @@
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
+  font-size: medium;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -19,17 +20,55 @@ nav {
   background-color: darkblue;
 }
 
+@media (max-width: 600px) {
+  .article-card {
+    margin: 0.8em;
+  }
+}
+
+@media (max-width: 800px) and (min-width: 601px) {
+  .article-card {
+    margin: 0.8em;
+    max-width: 45%
+  }
+
+  nav ul {
+    display: flex;
+    justify-content:space-between;
+    list-style-type: none;
+    margin: 0;
+    padding: 0.4em;
+    color: #f9f9f9;
+  }
+
+}
+
+@media (min-width: 801px) {
+  .article-card {
+    margin: 0.8em;
+    max-width: 30%
+  }
+
+  nav ul {
+    display: flex;
+    justify-content: space-between;
+    list-style-type: none;
+    margin: 0;
+    padding: 0.4em;
+    color: #f9f9f9;
+  }
+}
+
+
 nav ul {
-  display: flex;
-  justify-content: space-between;
   list-style-type: none;
-  padding: 5px;
+  margin: 0;
+  padding: 0.4em;
   color: #f9f9f9;
 }
 
-nav li {
-  margin-right: 10px;
-  margin-left: 10px;
+nav ul li {
+  margin: 0;
 }
 
 nav a {
@@ -37,15 +76,15 @@ nav a {
 }
 
 .topic-badge {
-  margin-left: 10px;
-  font-size: 11px;
+  margin-left: 0.5em;
+  font-size: 0.7rem;
   font-family: 'Courier New', Courier, monospace;
   font-weight: 600;
-  letter-spacing: 1px;
+  letter-spacing: 0.1em;
   background-color: lightgray;
-  padding: 2px 4px;
+  padding: 0.2em 0.3em;
   text-align: center;
-  border-radius: 5px;
+  border-radius: 0.4em;
 }
 
 footer {
@@ -56,7 +95,7 @@ footer ul {
   display: flex;
   justify-content: center;
   list-style-type: none;
-  padding: 5px;
+  padding: 0.4em;
   color: #f9f9f9;
 }
 
@@ -66,15 +105,15 @@ footer ul {
   justify-content: center;
 }
 
-.article-card {
-  margin: 10px;
-  max-width: 30%;
+#all-articles h2 {
+  line-height: 1.2;
+  font-size: 1rem;
+  margin-top: 0;
 }
 
-#all-articles h2 {
-  margin: 0;
+.full-article h1 {
   line-height: 1.2;
-  font-size: 95%;
+  font-size: 1.6rem;
 }
 
 #all-articles p {
@@ -82,6 +121,10 @@ footer ul {
 }
 
 #all-articles img {
+  max-width: 100%;
+}
+
+.full-article img {
   max-width: 100%;
 }
 
@@ -93,13 +136,13 @@ footer ul {
   font-size: smaller;
 }
 
-.article-details li{
-  margin-right: 10px;
+.article-details li {
+  margin-right: 1em;
 }
 
 .article-list-details li {
-  margin-right: 10px;
-  margin-top: 0px;
+  margin-right: 0.8em;
+  margin-top: 0;
 }
 
 .article-list-details {
@@ -113,9 +156,9 @@ footer ul {
 }
 
 #form-article-list-sort select {
-  margin-right: 5px;
-  margin-bottom: 10px;
-  padding: 3px;
+  margin-right: 0.5em;
+  margin-bottom: 1em;
+  padding: 0.2em;
 }
 
 .full-article p {
@@ -129,15 +172,15 @@ footer ul {
 }
 
 .votes img {
-  margin-right: 2px;
+  margin-right: 0.1em;
 }
 
 .votes img:hover {
-  cursor:pointer
+  cursor: pointer
 }
 
 .status {
-  margin-left: 10px;
+  margin-left: 1em;
   color: red;
 }
 
@@ -149,7 +192,7 @@ footer ul {
 }
 
 .comment-details li {
-  margin-right: 10px;
+  margin-right: 0.5em;
   margin-left: 0px;
 }
 
@@ -158,8 +201,8 @@ footer ul {
 }
 
 .article-comment {
-  padding: 15px;
-  margin: 15px;
+  padding: 0.9em;
+  margin: 0.9em;
   border: lightgray;
   border-style: solid;
   border-width: 1px;
@@ -171,38 +214,38 @@ footer ul {
 }
 
 #add-comment-form {
-  margin:15px;
+  margin: 0.9em;
 }
 
 #add-comment-form button {
   text-align: right;
-  padding: 4px;
-  margin-right: 5px;
+  padding: 0.3em;
+  margin-right: 0.5em;
   border: 1px solid transparent;
 }
 
 #add-comment-submit:enabled {
-background-color: #0feb84;
+  background-color: #0feb84;
 }
 
 #add-comment-form button:hover:enabled {
-border: 1px solid black;
+  border: 1px solid black;
 }
 
 #add-comment-text {
   box-sizing: border-box;
-  resize:vertical;
+  resize: vertical;
   width: 100%;
-  padding: 5px;
+  padding: 0.2em;
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  font-size: 16px;
+  font-size: medium;
 }
 
 .button-comment-delete {
   border: 1px solid transparent;
   background-color: red;
   color: white;
-  padding: 1px 2px;
+  padding: 0.2em 0.5em;
   border-radius: 0px;
 }
 
@@ -216,7 +259,7 @@ border: 1px solid black;
 
 #topics-list dl {
   text-align: left;
-  margin-left: 10px;
+  margin-left: 0.5em;
 }
 
 #topics-list dt {
@@ -225,15 +268,15 @@ border: 1px solid black;
 }
 
 #topics-list dd {
-  background:none no-repeat left top;
-  padding-left: 20px;
+  background: none no-repeat left top;
+  padding-left: 0.8em;
   font-size: smaller;
 }
 
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: #5159fc;
   text-decoration: inherit;
 }
 
