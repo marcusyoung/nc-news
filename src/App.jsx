@@ -6,6 +6,7 @@ import AllArticles from './components/AllArticles'
 import Article from './components/Article'
 import Topics from './components/Topics';
 import ErrorPage from './components/ErrorPage';
+import LoginPage from './components/LoginPage';
 import { LoggedOnUserProvider } from './contexts/LoggedOnUser';
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
         <Route path="/articles/:article_id" element={<Article />} />
         <Route path="/topics" element={<Topics />} />
         <Route path="/error" element={<ErrorPage />} />
+        <Route path="/login" element={<LoginPage />} />
         <Route path="*" element={<ErrorPage data={{ message: "Path not found" }} />} />
       </Routes>
       <Footer />

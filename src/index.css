@@ -20,34 +20,7 @@ nav {
   background-color: darkblue;
 }
 
-@media (max-width: 600px) {
-  .article-card {
-    margin: 0.8em;
-  }
-}
-
-@media (max-width: 800px) and (min-width: 601px) {
-  .article-card {
-    margin: 0.8em;
-    max-width: 45%
-  }
-
-  nav ul {
-    display: flex;
-    justify-content:space-between;
-    list-style-type: none;
-    margin: 0;
-    padding: 0.4em;
-    color: #f9f9f9;
-  }
-
-}
-
-@media (min-width: 801px) {
-  .article-card {
-    margin: 0.8em;
-    max-width: 30%
-  }
+@media (min-width: 600px) {
 
   nav ul {
     display: flex;
@@ -57,8 +30,19 @@ nav {
     padding: 0.4em;
     color: #f9f9f9;
   }
-}
 
+  #all-articles {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .article-card {
+    flex: 1 1 30%;
+    margin: 0.8em;
+  }
+
+}
 
 nav ul {
   list-style-type: none;
@@ -73,6 +57,20 @@ nav ul li {
 
 nav a {
   color: white;
+}
+
+#all-articles {
+  justify-content: center;
+}
+
+.article-card {
+  margin: 0.8em;
+}
+
+#all-articles h2 {
+  line-height: 1.2;
+  font-size: 1rem;
+  margin-top: 0;
 }
 
 .topic-badge {
@@ -97,18 +95,6 @@ footer ul {
   list-style-type: none;
   padding: 0.4em;
   color: #f9f9f9;
-}
-
-#all-articles {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-#all-articles h2 {
-  line-height: 1.2;
-  font-size: 1rem;
-  margin-top: 0;
 }
 
 .full-article h1 {
@@ -288,3 +274,25 @@ h1 {
   font-size: 2.5em;
   line-height: 1.1;
 }
+
+#login-form {
+  text-align: left;
+}
+
+input {
+  display: block;
+}
+
+#login-form button {
+  padding: 0.3em;
+  margin-right: 0.5em;
+  border: 1px solid transparent;
+}
+
+#login-form button:hover {
+  border: 1px solid black;
+}
+
+
+
+

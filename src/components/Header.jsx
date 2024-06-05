@@ -12,7 +12,7 @@ function Header() {
                 <li><Link to="/">Northcoders News</Link></li>
                 <li><Link to="/articles">All articles</Link></li>
                 <li><Link to="/topics">Topics</Link></li>
-                <li>{loggedOnUser}</li>
+                <li>{loggedOnUser ? loggedOnUser: <Link to="/login">Login</Link>}</li>
             </ul>
         </nav>
     )
