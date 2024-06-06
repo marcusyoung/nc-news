@@ -1,8 +1,10 @@
 import axios from 'axios'
 import { Link, useSearchParams } from 'react-router-dom';
 
+const baseURL = import.meta.env.VITE_API_BASE_URL
+
 const newsAPI = axios.create({
-    baseURL: "https://nc-news-api-fa1t.onrender.com/api"
+    baseURL: baseURL
 })
 
 export function getAllArticles(topic, sort_by, order_by) {
