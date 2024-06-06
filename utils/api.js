@@ -56,3 +56,11 @@ export function getTopicsList() {
             return response.data.topics
         });
 }
+
+export function authUser(body) {
+    return newsAPI.post("/users/login", body)
+    .then((response) => {
+        return response
+    })
+
+}
