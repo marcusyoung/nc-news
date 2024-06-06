@@ -275,12 +275,12 @@ h1 {
   line-height: 1.1;
 }
 
-#login {
-  text-align: left;
-}
-
 input {
   display: block;
+}
+
+#login {
+  text-align: left;
 }
 
 #login-form button {
@@ -291,6 +291,25 @@ input {
 
 #login-form button:hover {
   border: 1px solid black;
+}
+
+#signup {
+  text-align: left;
+}
+
+#signup-form button {
+  padding: 0.3em;
+  margin-right: 0.5em;
+  border: 1px solid transparent;
+}
+
+#signup-form button:hover {
+  border: 1px solid black;
+}
+
+.error {
+  font-size: small;
+  color: red;
 }
 
 

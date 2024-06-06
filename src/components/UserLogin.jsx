@@ -3,7 +3,7 @@ import { useNavigate, Link } from 'react-router-dom'
 import { LoggedOnUserContext } from '../contexts/LoggedOnUser'
 import { authUser } from '../../utils/api'
 
-function LoginPage() {
+function UserLogin() {
 
     const { loggedOnUser, setLoggedOnUser } = useContext(LoggedOnUserContext)
     const [statusMessage, setStatusMessage] = useState('')
@@ -20,7 +20,7 @@ function LoginPage() {
                 if (response.status === 200) {
                     setLoggedOnUser(usernameText)
                     setStatusMessage("")
-                    navigate(-1)
+                    navigate("/")
                 }
             })
             .catch(error => {
@@ -29,20 +29,23 @@ function LoginPage() {
     }
 
     return (
-        <section id="login">
-            <form onSubmit={handleSubmit} id="login-form">
-                <label id="enter-username-label" htmlFor="enter-username">Username:</label>
-                <input type='text' onChange={(e) => setUsernameText(e.target.value)} value={usernameText}></input>
-                <label id="enter-password-label" htmlFor="enter-password">Password:</label>
-                <input type='text' onChange={(e) => setPasswordText(e.target.value)} value={passwordText}></input>
-                <button type="submit" id="login-submit">Login</button>
-            </form>
-            {statusMessage && <p className='status'> {statusMessage} </p>}
-            <p><Link to={`/signup`}>Sign up</Link></p>
-        </section>
+        <>
+            <h1>Login</h1>
+            <section id="login">
+                <form onSubmit={handleSubmit} id="login-form">
+                    <label id="enter-username-label" htmlFor="enter-username">Username:</label>
+                    <input type='text' onChange={(e) => setUsernameText(e.target.value)} value={usernameText}></input>
+                    <label id="enter-password-label" htmlFor="enter-password">Password:</label>
+                    <input type='text' onChange={(e) => setPasswordText(e.target.value)} value={passwordText}></input>
+                    <button type="submit" id="login-submit">Login</button>
+                </form>
+                {statusMessage && <p className='status'> {statusMessage} </p>}
+                <p>If you don't have an account, <Link to={`/signup`}>Sign up</Link></p>
+            </section>
+        </>
     )
 
 }
 
 
-export default LoginPage
+export default UserLogin

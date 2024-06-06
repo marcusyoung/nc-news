@@ -8,7 +8,7 @@ const newsAPI = axios.create({
 })
 
 export function getAllArticles(topic, sort_by, order_by) {
-    return newsAPI.get("/articles", {params: {topic: topic, sort_by: sort_by, order: order_by}})
+    return newsAPI.get("/articles", { params: { topic: topic, sort_by: sort_by, order: order_by } })
         .then((response) => {
             return response.data.articles
         })
@@ -38,16 +38,16 @@ export function voteForArticle(article_id, vote) {
 
 export function addArticleComment(article_id, comment) {
     return newsAPI.post(`/articles/${article_id}/comments`, comment)
-    .then((response) => {
-        return response.data.comment
-    })
+        .then((response) => {
+            return response.data.comment
+        })
 }
 
 export function deleteArticleComment(comment_id) {
     return newsAPI.delete(`/comments/${comment_id}`)
-    .then((response) => {
-        return response
-    })
+        .then((response) => {
+            return response
+        })
 }
 
 export function getTopicsList() {
@@ -59,8 +59,14 @@ export function getTopicsList() {
 
 export function authUser(body) {
     return newsAPI.post("/users/login", body)
-    .then((response) => {
-        return response
-    })
+        .then((response) => {
+            return response
+        })
+}
 
+export function createUser(body) {
+    return newsAPI.post("/users/signup", body)
+        .then((response) => {
+            return response
+        })
 }
