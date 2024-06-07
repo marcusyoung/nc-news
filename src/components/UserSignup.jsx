@@ -7,7 +7,6 @@ function UserSignup() {
     const [usernameText, setUsernameText] = useState('')
     const [passwordText, setPasswordText] = useState('')
     const [nameText, setNameText] = useState('')
-    const [validPassword, setValidPassword] = useState(false)
     const [avatarUrlText, setAvatarUrlText] = useState('')
     const navigate = useNavigate()
     const passwordRegex = /^(?=.*[0-9])(?=.*[a-zA-Z]).{8,16}$/
@@ -16,11 +15,9 @@ function UserSignup() {
     function handleSubmit(event) {
         event.preventDefault()
         const body = { username: usernameText, password: passwordText, name: nameText, avatar_url: avatarUrlText }
-        setStatusMessage("Creating user account...")
         createUser(body)
             .then((response) => {
                 if (response.status === 201) {
-                    setStatusMessage("")
                     navigate("/login")
                 }
             })

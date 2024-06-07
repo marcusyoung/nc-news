@@ -14,17 +14,22 @@ function UserLogin() {
     function handleSubmit(event) {
         event.preventDefault()
         const body = { username: usernameText, password: passwordText }
-        setStatusMessage("Logging on...")
         authUser(body)
             .then((response) => {
                 if (response.status === 200) {
+                    localStorage.setItem('jwt-token', response.data.token)
                     setLoggedOnUser(usernameText)
-                    setStatusMessage("")
-                    navigate("/")
+                    setUsernameText('')
+                    setPasswordText('')
+                    navigate(-1)
                 }
             })
             .catch(error => {
-                setStatusMessage("Oops... there was a problem logging on")
+                if (error.response.data.msg) {
+                    setStatusMessage(error.response.data.msg)
+                } else {
+                    setStatusMessage("Oops... there was a problem logging on")
+                }
             })
     }
 
@@ -40,7 +45,7 @@ function UserLogin() {
                     <button type="submit" id="login-submit">Login</button>
                 </form>
                 {statusMessage && <p className='status'> {statusMessage} </p>}
-                <p>If you don't have an account, <Link to={`/signup`}>Sign up</Link></p>
+                <p>If you don't yet have an account, <Link to={`/signup`}>Sign up</Link></p>
             </section>
         </>
     )

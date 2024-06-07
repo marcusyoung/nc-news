@@ -243,7 +243,12 @@ footer ul {
   background-color: lightgray;
 }
 
+#topics-list {
+  text-align: center;
+}
+
 #topics-list dl {
+  display: inline-block;
   text-align: left;
   margin-left: 0.5em;
 }
@@ -280,6 +285,11 @@ input {
 }
 
 #login {
+  text-align: center;
+}
+
+#login form {
+  display: inline-block;
   text-align: left;
 }
 
@@ -294,6 +304,11 @@ input {
 }
 
 #signup {
+  text-align: center;
+}
+
+#signup form {
+  display: inline-block;
   text-align: left;
 }
 
@@ -303,8 +318,12 @@ input {
   border: 1px solid transparent;
 }
 
-#signup-form button:hover {
+#signup-form button:hover:enabled {
   border: 1px solid black;
+}
+
+#signup-form button:enabled {
+  background-color: #0feb84;
 }
 
 .error {

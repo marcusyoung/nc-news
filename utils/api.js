@@ -29,22 +29,40 @@ export function getComments(article_id) {
         });
 }
 
+// must have a token to vote on an article
 export function voteForArticle(article_id, vote) {
-    return newsAPI.patch(`/articles/${article_id}`, vote)
+    const token = localStorage.getItem('jwt-token')
+    return newsAPI.patch(`/articles/${article_id}`, vote, {
+        headers: {
+            'jwt-token': token
+        }
+    })
         .then((response) => {
             return response.data.article
         })
 }
 
+// must have a token to post comments
 export function addArticleComment(article_id, comment) {
-    return newsAPI.post(`/articles/${article_id}/comments`, comment)
+    const token = localStorage.getItem('jwt-token')
+    return newsAPI.post(`/articles/${article_id}/comments`, comment, {
+        headers: {
+            'jwt-token': token
+        }
+    })
         .then((response) => {
             return response.data.comment
         })
 }
 
+// must have a token to delete comments
 export function deleteArticleComment(comment_id) {
-    return newsAPI.delete(`/comments/${comment_id}`)
+    const token = localStorage.getItem('jwt-token')
+    return newsAPI.delete(`/comments/${comment_id}`, {
+        headers: {
+            'jwt-token': token
+        }
+    })
         .then((response) => {
             return response
         })
