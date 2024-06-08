@@ -1,11 +1,26 @@
 import axios from 'axios'
-import { Link, useSearchParams } from 'react-router-dom';
 
 const baseURL = import.meta.env.VITE_API_BASE_URL
 
 const newsAPI = axios.create({
     baseURL: baseURL
 })
+
+// newsAPI.interceptors.response.use((response) => {
+//     return response;
+// },
+//     (error) => {
+//         if (error.response && error.response.status === 401) {
+//             console.log("in interceptor")
+//             localStorage.removeItem('jwt-token')
+//             // this will reload app but that is fine for simplicity
+//             window.location.href = '/login';
+//             return Promise.reject('Unauthorized')
+//         } else {
+//         return Promise.reject(error)
+//         }
+//     });
+
 
 export function getAllArticles(topic, sort_by, order_by) {
     return newsAPI.get("/articles", { params: { topic: topic, sort_by: sort_by, order: order_by } })

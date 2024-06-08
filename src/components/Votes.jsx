@@ -6,9 +6,10 @@ import { voteForArticle } from '../../utils/api'
 
 function Votes({ itemVotes, article_id, comment_id }) {
 
-    const { loggedOnUser } = useContext(LoggedOnUserContext)
+    const { loggedOnUser, setLoggedOnUser } = useContext(LoggedOnUserContext)
     const [votes, setVotes] = useState(itemVotes)
     const [statusMessage, setStatusMessage] = useState('')
+
 
     const handleVoteClick = (num) => {
         setStatusMessage('')
@@ -20,7 +21,13 @@ function Votes({ itemVotes, article_id, comment_id }) {
                     .catch(error => {
                         // undo vote if vote increment failed on backend
                         setVotes((current) => current - num)
+                        if (error.response.status && error.response.status === 401) {
+                            localStorage.removeItem('jwt-token')
+                            setLoggedOnUser('')
+                            setStatusMessage("Authentication failed... please login again")
+                        } else {
                         setStatusMessage("Oops... there was a problem voting")
+                        }
                     })
             }
         } else {

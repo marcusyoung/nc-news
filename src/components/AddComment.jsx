@@ -4,7 +4,7 @@ import { addArticleComment } from '../../utils/api'
 
 function AddComment({ article_id, comments, setComments }) {
 
-    const { loggedOnUser } = useContext(LoggedOnUserContext)
+    const { loggedOnUser, setLoggedOnUser } = useContext(LoggedOnUserContext)
     const [commentText, setCommentText] = useState("")
     const [statusMessage, setStatusMessage] = useState('')
 
@@ -20,7 +20,13 @@ function AddComment({ article_id, comments, setComments }) {
                     setStatusMessage('')
                 })
                 .catch(error => {
+                    if (error.response.status && error.response.status === 401) {
+                        localStorage.removeItem('jwt-token')
+                        setLoggedOnUser('')
+                        setStatusMessage("Authentication failed... please login again")
+                    } else {
                     setStatusMessage("Oops... there was a problem adding your comment")
+                    }
                 })
         } else {
             setStatusMessage("Sorry... you must be logged on to comment")

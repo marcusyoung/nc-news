@@ -18,7 +18,7 @@ function UserSignup() {
         createUser(body)
             .then((response) => {
                 if (response.status === 201) {
-                    navigate("/login")
+                    navigate("/login", { state: { previousLocationPathname: location.pathname } })
                 }
             })
             .catch(error => {

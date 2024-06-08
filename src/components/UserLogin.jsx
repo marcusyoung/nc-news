@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react'
-import { useNavigate, Link } from 'react-router-dom'
+import { useNavigate, Link, useLocation } from 'react-router-dom'
 import { LoggedOnUserContext } from '../contexts/LoggedOnUser'
 import { authUser } from '../../utils/api'
 
@@ -10,6 +10,8 @@ function UserLogin() {
     const [usernameText, setUsernameText] = useState('')
     const [passwordText, setPasswordText] = useState('')
     const navigate = useNavigate()
+    const location = useLocation()
+
 
     function handleSubmit(event) {
         event.preventDefault()
@@ -21,7 +23,12 @@ function UserLogin() {
                     setLoggedOnUser(usernameText)
                     setUsernameText('')
                     setPasswordText('')
-                    navigate(-1)
+                    console.log(location)
+                    if (location.state && location.state.previousLocationPathname === "/signup") {
+                        navigate('/')
+                    } else {
+                        navigate(-1)
+                    }
                 }
             })
             .catch(error => {

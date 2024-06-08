@@ -8,7 +8,7 @@ import { deleteArticleComment } from '../../utils/api'
 
 function Comments({ article_id }) {
 
-    const { loggedOnUser } = useContext(LoggedOnUserContext)
+    const { loggedOnUser, setLoggedOnUser } = useContext(LoggedOnUserContext)
     const [comments, setComments] = useState([])
     const [loading, setLoading] = useState(true)
     const [commentDeleteStatus, setCommentDeleteStatus] = useState({ comment_id: null, message: '' })
@@ -35,7 +35,13 @@ function Comments({ article_id }) {
                 setCommentDeleteStatus({ comment_id: null, message: "" })
             })
             .catch(error => {
-                setCommentDeleteStatus({ comment_id: Number(comment_id), message: "Oops... there was a problem deleting the comment" })
+                if (error.response.status && error.response.status === 401) {
+                    localStorage.removeItem('jwt-token')
+                    setLoggedOnUser('')
+                    setCommentDeleteStatus({ comment_id: Number(comment_id), message: "Authentication failed... please login again" })
+                } else {
+                    setCommentDeleteStatus({ comment_id: Number(comment_id), message: "Oops... there was a problem deleting the comment" })
+                }
             })
     }
 
