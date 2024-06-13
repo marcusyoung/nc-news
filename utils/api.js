@@ -73,10 +73,10 @@ export function addArticleComment(article_id, comment) {
 // must have a token to delete comments
 export function deleteArticleComment(comment_id) {
     const token = localStorage.getItem('jwt-token')
-    return newsAPI.delete(`/comments/${comment_id}`, {
-        headers: {
-            'jwt-token': token
-        }
+    const headers = {
+        'jwt-token': token
+    }
+    return newsAPI.delete(`/comments/${comment_id}`, { headers }, {
     })
         .then((response) => {
             return response

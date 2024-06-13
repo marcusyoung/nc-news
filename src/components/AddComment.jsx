@@ -25,7 +25,7 @@ function AddComment({ article_id, comments, setComments }) {
                         setLoggedOnUser('')
                         setStatusMessage("Authentication failed... please login again")
                     } else {
-                    setStatusMessage("Oops... there was a problem adding your comment")
+                        setStatusMessage("Oops... there was a problem adding your comment")
                     }
                 })
         } else {

@@ -19,11 +19,11 @@ function UserLogin() {
         authUser(body)
             .then((response) => {
                 if (response.status === 200) {
+                    console.log(response.data)
                     localStorage.setItem('jwt-token', response.data.token)
                     setLoggedOnUser(usernameText)
                     setUsernameText('')
                     setPasswordText('')
-                    console.log(location)
                     if (location.state && location.state.previousLocationPathname === "/signup") {
                         navigate('/')
                     } else {

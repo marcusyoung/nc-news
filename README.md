@@ -10,7 +10,7 @@ This is a demonstration web application that I wrote using the React library. Th
 
 ## Features
 
-Currently the application does not include functionality for user login. The logged-in user is hardcoded as tickle122. 
+Currently, the application does not include functionality for user login. The logged-in user is hardcoded as tickle122. 
 
 ### Header
 
@@ -26,7 +26,7 @@ The article detail page includes a title, image, summary information, and the te
 
 #### Votes
 
-Two heart icons are displayed below the article. One has a ‘+’ symbol and the other a ‘-‘  symbol. The number of votes (negative or positive) an article has is shown next to the applicable symbol. A user can cast a negative or positive vote on the article by clicking the relevant icon. The vote is optimistically rendered, prior to the API call being made. This is to enhance the user experience. If the API call to register the vote fails, the user will be notified and the optimistically rendered change reversed.
+Two heart icons are displayed below the article. One has a '+' symbol and the other a '-' symbol. The number of votes (negative or positive) an article has is shown next to the applicable symbol. A user can cast a negative or positive vote on the article by clicking the relevant icon. The vote is optimistically rendered, prior to the API call being made. This is to enhance the user experience. If the API call to register the vote fails, the user will be notified and the optimistically rendered change reversed.
 
 #### Comments
 
