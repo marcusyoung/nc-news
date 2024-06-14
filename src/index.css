@@ -114,6 +114,17 @@ footer ul {
   max-width: 100%;
 }
 
+#user-profile {
+  padding: 0;
+  list-style-type: none;
+  justify-content: left;
+  font-size:large;
+}
+
+#profile img {
+  max-width: 100%;
+}
+
 .article-details {
   display: flex;
   padding: 0;
@@ -293,16 +304,6 @@ input {
   text-align: left;
 }
 
-#login-form button {
-  padding: 0.3em;
-  margin-right: 0.5em;
-  border: 1px solid transparent;
-}
-
-#login-form button:hover {
-  border: 1px solid black;
-}
-
 #signup {
   text-align: center;
 }
@@ -312,18 +313,25 @@ input {
   text-align: left;
 }
 
-#signup-form button {
-  padding: 0.3em;
-  margin-right: 0.5em;
-  border: 1px solid transparent;
+ .submit-button {
+  background-color: rgb(235, 234, 234);
+  border: 1px solid;
+  padding: 2px 6px;
+  margin-top: 1em;
 }
 
-#signup-form button:hover:enabled {
-  border: 1px solid black;
+.submit-button:enabled {
+  background-color: #aff5d4;
+  border: 1px solid gray;
+  padding: 2px 6px;
+  margin-top: 1em;
 }
 
-#signup-form button:enabled {
+.submit-button:hover:enabled {
   background-color: #0feb84;
+  border: 1px solid gray;
+  padding: 2px 6px;
+  margin-top: 1em;
 }
 
 .error {

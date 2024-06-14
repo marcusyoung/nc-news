@@ -15,9 +15,11 @@ function UserSignup() {
     function handleSubmit(event) {
         event.preventDefault()
         const body = { username: usernameText, password: passwordText, name: nameText, avatar_url: avatarUrlText }
+        setStatusMessage('Signing up...')
         createUser(body)
             .then((response) => {
                 if (response.status === 201) {
+                    setStatusMessage('')
                     navigate("/login", { state: { previousLocationPathname: location.pathname } })
                 }
             })
@@ -37,24 +39,24 @@ function UserSignup() {
 
     return (
         <>
-        <h1>Sign up</h1>
-        <section id="signup">
-            <form onSubmit={handleSubmit} id="signup-form">
-                <label id="enter-username-label" htmlFor="enter-username">Username:</label>
-                <input type='text' onChange={(e) => setUsernameText(e.target.value)} value={usernameText}></input>
-                {!usernameRegex.test(usernameText) && <div className='error'>Must have at least 5 alphanumeric characters and no spaces</div>}
-                <label id="enter-password-label" htmlFor="enter-password">Password:</label>
-                <input type='text' onChange={(e) => setPasswordText(e.target.value)} value={passwordText}></input>
-                {!passwordRegex.test(passwordText) && <div className='error'>Must have 8-16 characters and contain a number</div>}
-                <label id="enter-name-label" htmlFor="enter-name">Name:</label>
-                <input type='text' onChange={(e) => setNameText(e.target.value)} value={nameText}></input>
-                <label id="enter-avatarurl-label" htmlFor="enter-avatarurl">Avatar URL:</label>
-                <input type='text' onChange={(e) => setAvatarUrlText(e.target.value)} value={avatarUrlText}></input>
-                <button disabled={!passwordRegex.test(passwordText) || !usernameRegex.test(usernameText)} type="submit" id="signup-submit">Sign up!</button>
-            </form>
-            {statusMessage && <p className='status'> {statusMessage} </p>}
-            <p>If you already have an account, <Link to={`/login`}>Login</Link></p>
-        </section>
+            <h1>Sign up</h1>
+            <section id="signup">
+                <form onSubmit={handleSubmit} id="signup-form">
+                    <label id="enter-username-label" htmlFor="enter-username">Username:</label>
+                    <input type='text' onChange={(e) => setUsernameText(e.target.value)} value={usernameText}></input>
+                    {!usernameRegex.test(usernameText) && <div className='error'>Must have at least 5 alphanumeric characters and no spaces</div>}
+                    <label id="enter-password-label" htmlFor="enter-password">Password:</label>
+                    <input type='text' onChange={(e) => setPasswordText(e.target.value)} value={passwordText}></input>
+                    {!passwordRegex.test(passwordText) && <div className='error'>Must have 8-16 characters and contain a number</div>}
+                    <label id="enter-name-label" htmlFor="enter-name">Name:</label>
+                    <input type='text' onChange={(e) => setNameText(e.target.value)} value={nameText}></input>
+                    <label id="enter-avatarurl-label" htmlFor="enter-avatarurl">Avatar URL:</label>
+                    <input type='text' onChange={(e) => setAvatarUrlText(e.target.value)} value={avatarUrlText}></input>
+                    <button disabled={!passwordRegex.test(passwordText) || !usernameRegex.test(usernameText)} type="submit" class="submit-button">Sign up!</button>
+                </form>
+                {statusMessage && <p className='status'> {statusMessage} </p>}
+                <p>If you already have an account, <Link to={`/login`}>Login</Link></p>
+            </section>
         </>
     )
 

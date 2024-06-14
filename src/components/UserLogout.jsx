@@ -17,7 +17,7 @@ function UserLogout() {
     return (
         <section id="logout">
             <form onSubmit={handleSubmit} id="logout-form">
-                <button type="submit" id="logout-submit">Logout</button>
+                <button type="submit" class="submit-button">Logout</button>
             </form>
         </section>
     )

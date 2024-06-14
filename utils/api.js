@@ -44,6 +44,21 @@ export function getComments(article_id) {
         });
 }
 
+
+// must have a token to get user information
+export function getUser(username) {
+    const token = localStorage.getItem('jwt-token')
+    return newsAPI.get(`/users/${username}`, {
+        headers: {
+            'jwt-token': token
+        }
+    })
+        .then((response) => {
+            return response.data.user
+        })
+}
+
+
 // must have a token to vote on an article
 export function voteForArticle(article_id, vote) {
     const token = localStorage.getItem('jwt-token')
