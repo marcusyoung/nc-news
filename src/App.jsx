@@ -8,6 +8,7 @@ import Topics from './components/Topics';
 import ErrorPage from './components/ErrorPage';
 import UserLogin from './components/UserLogin';
 import UserSignup from './components/UserSignup';
+import UserProfile from './components/UserProfile';
 import { LoggedOnUserProvider } from './contexts/LoggedOnUser';
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
         <Route path="/error" element={<ErrorPage />} />
         <Route path="/login" element={<UserLogin />} />
         <Route path="/signup" element={<UserSignup />} />
+        <Route path="/profile" element={<UserProfile />} />
         <Route path="*" element={<ErrorPage data={{ message: "Path not found" }} />} />
       </Routes>
       <Footer />
