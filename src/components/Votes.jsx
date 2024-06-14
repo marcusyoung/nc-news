@@ -1,12 +1,14 @@
 import vote_plus from '../../assets/heart-plus.png'
 import vote_minus from '../../assets/heart-minus.png'
 import { useContext, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { LoggedOnUserContext } from '../contexts/LoggedOnUser'
 import { voteForArticle } from '../../utils/api'
 
 function Votes({ itemVotes, article_id, comment_id }) {
 
     const { loggedOnUser, setLoggedOnUser } = useContext(LoggedOnUserContext)
+    const navigate = useNavigate()
     const [votes, setVotes] = useState(itemVotes)
     const [statusMessage, setStatusMessage] = useState('')
 
@@ -21,10 +23,10 @@ function Votes({ itemVotes, article_id, comment_id }) {
                     .catch(error => {
                         // undo vote if vote increment failed on backend
                         setVotes((current) => current - num)
-                        if (error.response.status && error.response.status === 401) {
+                        if (error.response.status && error.response.status === 403) {
                             localStorage.removeItem('jwt-token')
                             setLoggedOnUser('')
-                            setStatusMessage("Authentication failed... please login again")
+                            navigate('/login')
                         } else {
                         setStatusMessage("Oops... there was a problem voting")
                         }

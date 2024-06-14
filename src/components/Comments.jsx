@@ -1,4 +1,5 @@
 import { useState, useEffect, useContext } from "react"
+import { useNavigate } from 'react-router-dom'
 import { LoggedOnUserContext } from '../contexts/LoggedOnUser'
 import { getComments } from '../../utils/api'
 import { formatDate } from "../../utils/utils.js"
@@ -9,6 +10,7 @@ import { deleteArticleComment } from '../../utils/api'
 function Comments({ article_id }) {
 
     const { loggedOnUser, setLoggedOnUser } = useContext(LoggedOnUserContext)
+    const navigate = useNavigate()
     const [comments, setComments] = useState([])
     const [loading, setLoading] = useState(true)
     const [commentDeleteStatus, setCommentDeleteStatus] = useState({ comment_id: null, message: '' })
@@ -35,10 +37,10 @@ function Comments({ article_id }) {
                 setCommentDeleteStatus({ comment_id: null, message: "" })
             })
             .catch(error => {
-                if (error.response.status && error.response.status === 401) {
+                if (error.response.status && error.response.status === 403) {
                     localStorage.removeItem('jwt-token')
                     setLoggedOnUser('')
-                    setCommentDeleteStatus({ comment_id: Number(comment_id), message: "Authentication failed... please login again" })
+                    navigate('/login')
                 } else {
                     setCommentDeleteStatus({ comment_id: Number(comment_id), message: "Oops... there was a problem deleting the comment" })
                 }

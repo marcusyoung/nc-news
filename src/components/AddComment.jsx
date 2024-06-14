@@ -1,12 +1,14 @@
 import { useContext, useState } from 'react'
 import { LoggedOnUserContext } from '../contexts/LoggedOnUser'
 import { addArticleComment } from '../../utils/api'
+import { useNavigate } from 'react-router-dom'
 
 function AddComment({ article_id, comments, setComments }) {
 
     const { loggedOnUser, setLoggedOnUser } = useContext(LoggedOnUserContext)
     const [commentText, setCommentText] = useState("")
     const [statusMessage, setStatusMessage] = useState('')
+    const navigate = useNavigate()
 
     function handleSubmit(event) {
         event.preventDefault()
@@ -20,10 +22,10 @@ function AddComment({ article_id, comments, setComments }) {
                     setStatusMessage('')
                 })
                 .catch(error => {
-                    if (error.response.status && error.response.status === 401) {
+                    if (error.response.status && error.response.status === 403) {
                         localStorage.removeItem('jwt-token')
                         setLoggedOnUser('')
-                        setStatusMessage("Authentication failed... please login again")
+                        navigate('/login')
                     } else {
                         setStatusMessage("Oops... there was a problem adding your comment")
                     }
