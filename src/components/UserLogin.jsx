@@ -20,7 +20,6 @@ function UserLogin() {
         authUser(body)
             .then((response) => {
                 if (response.status === 200) {
-                    localStorage.setItem('jwt-token', response.data.token)
                     setLoggedOnUser(usernameText)
                     setUsernameText('')
                     setPasswordText('')
@@ -50,7 +49,7 @@ function UserLogin() {
                     <input type='text' onChange={(e) => setUsernameText(e.target.value)} value={usernameText}></input>
                     <label id="enter-password-label" htmlFor="enter-password">Password:</label>
                     <input type='text' onChange={(e) => setPasswordText(e.target.value)} value={passwordText}></input>
-                    <button button disabled={usernameText.length === 0 || passwordText.length === 0} type="submit" class="submit-button">Login</button>
+                    <button disabled={usernameText.length === 0 || passwordText.length === 0} type="submit" className="submit-button">Login</button>
                 </form>
                 {statusMessage && <p className='status'> {statusMessage} </p>}
                 <p>If you don't yet have an account, <Link to={`/signup`}>Sign up</Link></p>

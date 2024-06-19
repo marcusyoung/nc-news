@@ -23,7 +23,6 @@ function AddComment({ article_id, comments, setComments }) {
                 })
                 .catch(error => {
                     if (error.response.status && error.response.status === 403) {
-                        localStorage.removeItem('jwt-token')
                         setLoggedOnUser('')
                         navigate('/login')
                     } else {

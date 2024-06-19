@@ -2,15 +2,23 @@
 
 This is a demonstration web application that I wrote using the React library. The application reads, updates and writes data to/from a backend PostgreSQL database via a [REST API](https://github.com/marcusyoung/nc-news-api) (Node.js and Express) that I also developed. A live version of the application is deployed here: [https://nc-news-zmze.onrender.com](https://nc-news-zmze.onrender.com). 
 
-***Note: the API is hosted on Render free tier and goes to sleep after about 15 minutes of inactivity. As a result, the web application may say “please wait…” for up to a minute while the API is spun up.***
-
 ![](nc-news.jpg)
 
 
 
 ## Features
 
-Currently, the application does not include functionality for user login. The logged-in user is hardcoded as tickle122. 
+### Sign up
+
+A new user can sign up for an account. Credentials are stored in the database, with passwords hashed server side using the bcrypt.js package and incorporating a salt.
+
+### Login
+
+A user can login. The user’s credentials are sent to the backend server in the request body where the provided password is hashed and then compared with the hashed password stored in the database. On successful authentication a JSON Web Token is generated using a secret key and returned in the response body.  This token has a 24 hour expiration and is used for API endpoint authorisation. The token is added to the browser’s Local Storage.
+
+### Profile page
+
+Each user has a profile page. This page displays the user’s avatar, username, and display name.  The user can logout from their profile page. On logout, the JSON Web Token is remove form Local Storage.
 
 ### Header
 

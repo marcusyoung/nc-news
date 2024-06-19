@@ -3,23 +3,34 @@ import axios from 'axios'
 const baseURL = import.meta.env.VITE_API_BASE_URL
 
 const newsAPI = axios.create({
-    baseURL: baseURL
+    baseURL: baseURL,
+    headers: {
+        "Content-Type": "application/json"
+    },
+    withCredentials: true
 })
 
-// newsAPI.interceptors.response.use((response) => {
-//     return response;
-// },
-//     (error) => {
-//         if (error.response && error.response.status === 401) {
-//             console.log("in interceptor")
-//             localStorage.removeItem('jwt-token')
-//             // this will reload app but that is fine for simplicity
-//             window.location.href = '/login';
-//             return Promise.reject('Unauthorized')
-//         } else {
-//         return Promise.reject(error)
-//         }
-//     });
+const getCookie = (name) => {
+    const cookies = document.cookie
+        .split("; ")
+        .find((row) => row.startsWith(`${name}=`));
+
+    return cookies ? cookies.split("=")[1] : null;
+};
+
+
+// if we have a csrf-token cookie add it to request header
+newsAPI.interceptors.request.use(config => {
+    const xsrfToken = getCookie("csrf-token");
+    if (xsrfToken) {
+        config.headers['X-XSRF-TOKEN'] = xsrfToken
+    }
+    return config
+},
+    error => {
+        return Promise.reject(error)
+    }
+);
 
 
 export function getAllArticles(topic, sort_by, order_by) {
@@ -47,12 +58,7 @@ export function getComments(article_id) {
 
 // must have a token to get user information
 export function getUser(username) {
-    const token = localStorage.getItem('jwt-token')
-    return newsAPI.get(`/users/${username}`, {
-        headers: {
-            'jwt-token': token
-        }
-    })
+    return newsAPI.get(`/users/${username}`)
         .then((response) => {
             return response.data.user
         })
@@ -61,12 +67,7 @@ export function getUser(username) {
 
 // must have a token to vote on an article
 export function voteForArticle(article_id, vote) {
-    const token = localStorage.getItem('jwt-token')
-    return newsAPI.patch(`/articles/${article_id}`, vote, {
-        headers: {
-            'jwt-token': token
-        }
-    })
+    return newsAPI.patch(`/articles/${article_id}`, vote)
         .then((response) => {
             return response.data.article
         })
@@ -74,12 +75,7 @@ export function voteForArticle(article_id, vote) {
 
 // must have a token to post comments
 export function addArticleComment(article_id, comment) {
-    const token = localStorage.getItem('jwt-token')
-    return newsAPI.post(`/articles/${article_id}/comments`, comment, {
-        headers: {
-            'jwt-token': token
-        }
-    })
+    return newsAPI.post(`/articles/${article_id}/comments`, comment)
         .then((response) => {
             return response.data.comment
         })
@@ -87,12 +83,7 @@ export function addArticleComment(article_id, comment) {
 
 // must have a token to delete comments
 export function deleteArticleComment(comment_id) {
-    const token = localStorage.getItem('jwt-token')
-    const headers = {
-        'jwt-token': token
-    }
-    return newsAPI.delete(`/comments/${comment_id}`, { headers }, {
-    })
+    return newsAPI.delete(`/comments/${comment_id}`)
         .then((response) => {
             return response
         })
@@ -114,6 +105,13 @@ export function authUser(body) {
 
 export function createUser(body) {
     return newsAPI.post("/users/signup", body)
+        .then((response) => {
+            return response
+        })
+}
+
+export function logoutUser() {
+    return newsAPI.post("/users/logout")
         .then((response) => {
             return response
         })

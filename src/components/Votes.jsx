@@ -24,7 +24,6 @@ function Votes({ itemVotes, article_id, comment_id }) {
                         // undo vote if vote increment failed on backend
                         setVotes((current) => current - num)
                         if (error.response.status && error.response.status === 403) {
-                            localStorage.removeItem('jwt-token')
                             setLoggedOnUser('')
                             navigate('/login')
                         } else {

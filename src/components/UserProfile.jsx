@@ -24,7 +24,6 @@ function UserProfile() {
                 })
                 .catch(error => {
                 if (error.response.status && error.response.status === 403) {
-                    localStorage.removeItem('jwt-token')
                     setLoggedOnUser('')
                     navigate('/login')
                 } else {
