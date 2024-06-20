@@ -48,7 +48,7 @@ function UserLogin() {
                     <label id="enter-username-label" htmlFor="enter-username">Username:</label>
                     <input type='text' onChange={(e) => setUsernameText(e.target.value)} value={usernameText}></input>
                     <label id="enter-password-label" htmlFor="enter-password">Password:</label>
-                    <input type='text' onChange={(e) => setPasswordText(e.target.value)} value={passwordText}></input>
+                    <input type='password' onChange={(e) => setPasswordText(e.target.value)} value={passwordText}></input>
                     <button disabled={usernameText.length === 0 || passwordText.length === 0} type="submit" className="submit-button">Login</button>
                 </form>
                 {statusMessage && <p className='status'> {statusMessage} </p>}

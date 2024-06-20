@@ -46,7 +46,7 @@ function UserSignup() {
                     <input type='text' onChange={(e) => setUsernameText(e.target.value)} value={usernameText}></input>
                     {!usernameRegex.test(usernameText) && <div className='error'>Must have at least 5 alphanumeric characters and no spaces</div>}
                     <label id="enter-password-label" htmlFor="enter-password">Password:</label>
-                    <input type='text' onChange={(e) => setPasswordText(e.target.value)} value={passwordText}></input>
+                    <input type='password' onChange={(e) => setPasswordText(e.target.value)} value={passwordText}></input>
                     {!passwordRegex.test(passwordText) && <div className='error'>Must have 8-16 characters and contain a number</div>}
                     <label id="enter-name-label" htmlFor="enter-name">Name:</label>
                     <input type='text' onChange={(e) => setNameText(e.target.value)} value={nameText}></input>
