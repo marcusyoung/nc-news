@@ -1,10 +1,8 @@
 # Northcoders News Application
 
-This is a demonstration web application that I wrote using the React library. The application reads, updates and writes data to/from a backend PostgreSQL database via a [REST API](https://github.com/marcusyoung/nc-news-api) (Node.js and Express) that I also developed. A live version of the application is deployed here: [https://nc-news-zmze.onrender.com](https://nc-news-zmze.onrender.com). 
+This is a demonstration web application that I developed using the React library. The application reads, updates and writes data to/from a backend PostgreSQL database via a [REST API](https://github.com/marcusyoung/nc-news-api) (Node.js and Express) that I also developed. A live version of the application is hosted on Render using a custom domain: [https://ncnews.int2.uk](https://ncnews.int2.uk). 
 
 ![](nc-news.jpg)
-
-
 
 ## Features
 
@@ -14,15 +12,23 @@ A new user can sign up for an account. Credentials are stored in the database, w
 
 ### Login
 
-A user can login. The user’s credentials are sent to the backend server in the request body where the provided password is hashed and then compared with the hashed password stored in the database. On successful authentication a JSON Web Token is generated using a secret key and returned in the response body.  This token has a 24 hour expiration and is used for API endpoint authorisation. The token is added to the browser’s Local Storage.
+A user can login. The user’s credentials are sent to the backend server in the request body where the provided password is hashed and then compared with the hashed password stored in the database. On successful authentication a JSON Web Token (JWT) is generated using a secret key and returned in a session cookie. The JWT token has a 24 hour expiration and is used for API endpoint authorisation.
+
+### Cross-site request forgery prevention
+
+The Signed Double-Submit Cookie approach is implemented. The Hash-based Message Authentication (HMAC) algorithm is used to generate a token based on a random UUID within the JWT and a secret key. The CSRF token is sent to the client within the JWT cookie (HttpOnly flag set to true) and in an additional cookie (HttpOnly flag set to false). The client includes the CSRF token (X-XSRF-TOKEN) in the header of request to the API (this is implemented via an axios request interceptor).
+
+### Authorisation
+
+On the API server, Express router middleware is used to authorise access to state changing endpoints. This middleware checks for a valid JWT and checks that the CSRF token included in the request header matches the CSRF token within the JWT. Checks are made within the relevant Controller or Model that the username within the JWT is authorised to perform the requested action.
 
 ### Profile page
 
-Each user has a profile page. This page displays the user’s avatar, username, and display name.  The user can logout from their profile page. On logout, the JSON Web Token is remove form Local Storage.
+Each user has a profile page. This page displays the user’s avatar, username, and display name. The user can logout from their profile page. This is an API call. On logout, the JWT and CSRF cookies are cleared.
 
 ### Header
 
-From the header the user can select to view ‘All articles’ or the ‘Topics’ page. The right of the header shows the currently logged on user.
+From the header the user can select to view ‘All articles’ or the ‘Topics’ page. The right of the header shows the currently logged on user. From here, the user can access their profile page.
 
 ### Home page
 
