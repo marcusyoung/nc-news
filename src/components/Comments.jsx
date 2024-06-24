@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from "react"
 import { useNavigate } from 'react-router-dom'
 import { LoggedOnUserContext } from '../contexts/LoggedOnUser'
-import { getComments } from '../../utils/api'
+import { getComments, voteForComment } from '../../utils/api'
 import { formatDate } from "../../utils/utils.js"
 import Votes from './Votes.jsx'
 import AddComment from './AddComment.jsx'
@@ -61,7 +61,7 @@ function Comments({ article_id }) {
                                 {comment.comment_id === commentDeleteStatus.comment_id ? <li className="status">{commentDeleteStatus.message}</li> : null}
                             </ul>
                             <p>{comment.body}</p>
-                            <Votes itemVotes={comment.votes} comment_id={comment.comment_id} />
+                            <Votes voteFor={voteForComment} itemVotes={comment.votes} id={comment.comment_id} author={comment.author} />
                         </div>
                     )
                 })

@@ -165,7 +165,6 @@ footer ul {
 .votes {
   text-align: left;
   font-size: smaller;
-  font-weight: 600;
 }
 
 .votes img {
@@ -174,6 +173,10 @@ footer ul {
 
 .votes img:hover {
   cursor: pointer
+}
+
+.voted {
+  font-weight:bolder;
 }
 
 .status {

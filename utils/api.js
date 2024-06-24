@@ -89,6 +89,16 @@ export function deleteArticleComment(comment_id) {
         })
 }
 
+
+// must have a token to vote on an article
+export function voteForComment(comment_id, vote) {
+    console.log(comment_id, ' ', vote)
+    return newsAPI.patch(`/comments/${comment_id}`, vote)
+        .then((response) => {
+            return response.data.comment
+        })
+}
+
 export function getTopicsList() {
     return newsAPI.get("/topics")
         .then((response) => {
