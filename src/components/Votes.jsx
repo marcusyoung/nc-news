@@ -39,9 +39,9 @@ function Votes({ voteFor, itemVotes, id, author }) {
 
     return (
         <div className="votes">
-            <img onClick={() => author !== loggedOnUser? handleVoteClick(1, 'upVote'): setStatusMessage('You can\'t vote on your own comment')} src={vote_plus} alt="Up Vote" />
+            <img onClick={() => author !== loggedOnUser? handleVoteClick(1, 'upVote'): setStatusMessage('You can\'t vote on your own content')} src={vote_plus} alt="Up Vote" />
             <span className={`${voteTracker === 1 || voteTracker === -1 ? "voted" : "not-voted"}`}>{votes >= 0 ? votes : null}</span>
-            <img onClick={() => author !== loggedOnUser? handleVoteClick(-1, 'downVote'): setStatusMessage('You can\'t vote on your own comment')} src={vote_minus} alt="Down Vote" />
+            <img onClick={() => author !== loggedOnUser? handleVoteClick(-1, 'downVote'): setStatusMessage('You can\'t vote on your own content')} src={vote_minus} alt="Down Vote" />
             <span className={`${voteTracker === -1 ? "voted" : "not-voted"}`}>{votes < 0 ? votes : null}</span>
             {statusMessage && <span className='error'> {statusMessage} </span>}
         </div>
