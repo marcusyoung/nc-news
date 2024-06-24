@@ -40,11 +40,11 @@ The article detail page includes a title, image, summary information, and the te
 
 #### Votes
 
-Two heart icons are displayed below the article. One has a '+' symbol and the other a '-' symbol. The number of votes (negative or positive) an article has is shown next to the applicable symbol. A user can cast a negative or positive vote on the article by clicking the relevant icon. The vote is optimistically rendered, prior to the API call being made. This is to enhance the user experience. If the API call to register the vote fails, the user will be notified and the optimistically rendered change reversed.
+Two heart icons are displayed below the article. One has a '+' symbol and the other a '-' symbol. The number of votes (negative or positive) an article has is shown next to the applicable symbol. A user can cast a negative or positive vote on the article by clicking the relevant icon. The vote is optimistically rendered, prior to the API call being made. This is to enhance the user experience. If the API call to register the vote fails, the user will be notified and the optimistically rendered change reversed. A user cannot vote on an article that they authored.
 
 #### Comments
 
-Underneath the article any comments by users are shown. A logged-on user can add a comment. They can also delete any of their own comments. A new comment is added to state after successful posting via the API and displayed to the user at the top of the list of comments. The user will be notified if the comment fails to post.
+Underneath the article any comments by users are shown. A logged-on user can add a comment. They can also delete any of their own comments. A new comment is added to state after successful posting via the API and displayed to the user at the top of the list of comments. The user will be notified if the comment fails to post. Users can vote on comments using the heart icons (described above). A user cannot vote on a comment that they authored.
 
 ### Topics
 
