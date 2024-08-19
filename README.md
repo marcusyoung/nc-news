@@ -1,7 +1,6 @@
 # Northcoders News Application
 
-This is a demonstration web application that I developed using the React library. The application reads, updates and writes data to/from a backend PostgreSQL database via a [REST API](https://github.com/marcusyoung/nc-news-api) (Node.js and Express) that I also developed. A live version of the application is hosted on Render using a custom domain: [https://ncnews.int2.uk](https://ncnews.int2.uk). 
-
+This is a demonstration web application that I developed using the React library. The application reads, updates and writes data to/from a backend PostgreSQL database via a [REST API](https://github.com/marcusyoung/nc-news-api) (Node.js and Express) that I also developed.
 ![](nc-news.jpg)
 
 ## Features
